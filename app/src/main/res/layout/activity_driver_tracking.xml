@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.DriverTracking" >
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".Activities.DriverTracking" />
+    <Button
+        android:id="@+id/btnStartTrip"
+        android:text="START TRIP"
+        android:enabled="false"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/btn_sign_in_background"
+        android:textColor="@android:color/white"
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/googleMapFAB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/map"
+        android:layout_alignEnd="@+id/map"
+        android:layout_marginTop="475dp"
+        android:layout_marginEnd="35dp"
+        android:clickable="true"
+        android:focusable="auto"
+        map:srcCompat="@drawable/googleg_standard_color_18" />
+</RelativeLayout>
