@@ -14,6 +14,9 @@ import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.iramml.uberclone.Common.Common;
 import com.iramml.uberclone.GoogleAPIRoutesRequest.GoogleMapsAPIRequest;
@@ -37,7 +40,7 @@ public class CustommerCall extends AppCompatActivity {
 
     googleAPIInterface mService;
     IFCMService mFCMService;
-    String riderID, token;
+    String riderID, token, pickup_id;
 
     double lat, lng, lat_end, lng_end;
     @Override
@@ -75,6 +78,8 @@ public class CustommerCall extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("DEBUG", "Pick Up Locations: " + lat + lng);
+                // Send Confirmation message back user for driver acceptance
+
                 Intent intent=new Intent(CustommerCall.this, DriverTracking.class);
                 intent.putExtra("lat", lat);
                 intent.putExtra("lng", lng);
@@ -82,6 +87,16 @@ public class CustommerCall extends AppCompatActivity {
                 intent.putExtra("lng_end", lng_end);
                 intent.putExtra("riderID", riderID);
                 intent.putExtra("token", token);
+                intent.putExtra("pickup_id", pickup_id);
+
+                Log.d("DEBUG Driver Id", Common.userID);
+                Log.d("DEBUG PickUP Id", pickup_id.toString());
+
+                // MIGHT BE SOME ERRORS HERE PICK UP LATER
+                // Once request is accepted assign the approriate drivers token in the firebase database
+                DatabaseReference dbPickup = FirebaseDatabase.getInstance().getReference(Common.pickup_assign_tbl);
+                dbPickup.child(pickup_id).child("Driver").setValue(Common.userID.toString());
+
                 startActivity(intent);
                 finish();
             }

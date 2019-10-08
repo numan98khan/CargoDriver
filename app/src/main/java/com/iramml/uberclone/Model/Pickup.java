@@ -1,17 +1,18 @@
 package com.iramml.uberclone.Model;
 
 import com.google.android.gms.location.places.Place;
+
 public class Pickup {
     //    Place pickUp;
 //    Place dropOff;
-    String ID;
+    String ID, pickup_id;
     Token token;
     Double pickLat, pickLng, dropLat, dropLng;
 
     public Pickup() {
     }
 
-    public Pickup(Place pickUp, Place dropOff, String ID, Token token, Double pickLat, Double pickLng, Double dropLat, Double dropLng) {
+    public Pickup(String ID, Token token, Double pickLat, Double pickLng, Double dropLat, Double dropLng, String pickup_id) {
 //        this.pickUp = pickUp;
 //        this.dropOff = dropOff;
         this.ID = ID;
@@ -20,6 +21,7 @@ public class Pickup {
         this.pickLng = pickLng;
         this.dropLat = dropLat;
         this.dropLng = dropLng;
+        this.pickup_id = pickup_id;
     }
 
 //    public Place getDropOffPlace() {
@@ -54,6 +56,15 @@ public class Pickup {
     public void setToken(Token token) {
         this.token = token;
     }
+
+    public String getPickup_id() {
+        return pickup_id;
+    }
+
+    public void setPickup_id(String pickup_id) {
+        this.pickup_id = pickup_id;
+    }
+
 
     public Double coord(int i) {
         if (i == 0) {

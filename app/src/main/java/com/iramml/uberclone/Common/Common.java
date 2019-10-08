@@ -13,6 +13,7 @@ public class Common {
     public static final String history_rider = "RiderHistory";
     public static final String user_rider_tbl="RidersInformation";
     public static final String pickup_request_tbl="PickupRequest";
+    public static final String pickup_assign_tbl="PickupID";
     public static final String token_tbl="Tokens";
     public static User currentUser;
     public static String userID;

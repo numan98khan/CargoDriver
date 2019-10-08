@@ -231,12 +231,21 @@ public class DriverHome extends AppCompatActivity
         firebaseStorage=FirebaseStorage.getInstance();
         storageReference=firebaseStorage.getReference();
 
+//        offlineInitiater();
+
+
+        // Temporary SignOut
+//        signOut();
+
         location=new Location(this, new locationListener() {
             @Override
             public void locationResponse(LocationResult response) {
                 // Add a marker in Sydney and move the camera
                 Common.currentLat=response.getLastLocation().getLatitude();
                 Common.currentLng=response.getLastLocation().getLongitude();
+
+                Log.d("DEBUG Inside", Common.currentLat.toString());
+
                 displayLocation();
             }
         });
@@ -295,6 +304,21 @@ public class DriverHome extends AppCompatActivity
         updateFirebaseToken();
     }
 
+    private void offlineInitiater(){
+        // Temporarily Done
+//        Common.currenLocation=new LatLng(33.6700066, 72.9882009);
+
+        Common.currentLat = 33.6693;
+        Common.currentLng = 72.9999;
+//        Common.desLat = 33.6700066;
+//        Common.desLng = 72.9882009;
+
+//        currentLat = 33.6693;
+//        currentLng = 72.9999;
+
+//        Common.isTracking = false;
+    }
+
     public void initDrawer(){
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -308,6 +332,8 @@ public class DriverHome extends AppCompatActivity
         TextView tvName=(TextView)navigationHeaderView.findViewById(R.id.tvDriverName);
         TextView tvStars=(TextView)navigationHeaderView.findViewById(R.id.tvStars);
         CircleImageView imageAvatar=(CircleImageView) navigationHeaderView.findViewById(R.id.imageAvatar);
+
+        Log.d("DEBUGGG", Common.currentUser.toString());
 
         tvName.setText(Common.currentUser.getName());
         if(Common.currentUser.getRates()!=null &&

@@ -57,6 +57,13 @@ public class firebaseMessaging extends FirebaseMessagingService{
         intent.putExtra("rider", dataLoad.getID());
         // Have to explicitly get the token as string
         intent.putExtra("token", dataLoad.getToken().getToken());
+
+        Log.d("sendNotification pick", dataLoad.getPickup_id().toString());
+
+        intent.putExtra("pickup_id", dataLoad.getPickup_id());
+
+        Log.d("DEEEBUUUG", dataLoad.getToken().getToken());
+
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
 
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
